@@ -491,7 +491,8 @@ SetGameModePreferences = function()
 	local prefix = {
 		ITG = "",
 		["FA+"] = "ECFA-",
-		Casual = "Casual-"
+		Casual = "Casual-",
+		PIU = "PIU-"
 	}
 
 	if PROFILEMAN:GetStatsPrefix() ~= prefix[SL.Global.GameMode] then

@@ -165,6 +165,14 @@ SL = {
 			color("#b45cff"),	-- purple (greatly lightened)
 			color("#ff3030")	-- red (slightly lightened)
 		},
+		PIU = {
+			color("#21CCE8"),	-- blue
+			color("#e29c18"),	-- gold
+			color("#66c955"),	-- green
+			color("#b45cff"),	-- purple (greatly lightened)
+			color("#c9855e"),	-- peach?
+			color("#ff3030")	-- red (slightly lightened)
+		},
 	},
 	Preferences = {
 		Casual = {
@@ -225,6 +233,26 @@ SL = {
 			TimingWindowSecondsW5=0.135000,
 			TimingWindowSecondsHold=0.320000,
 			TimingWindowSecondsMine=0.065000,
+			TimingWindowSecondsRoll=0.350000,
+		},
+		PIU = {
+			TimingWindowAdd=0.0015,
+			RegenComboAfterMiss=5,
+			MaxRegenComboAfterMiss=10,
+			MinTNSToHideNotes="TapNoteScore_W3",
+			HarshHotLifePenalty=true,
+
+			PercentageScoring=true,
+			AllowW1="AllowW1_Everywhere",
+			SubSortByNumSteps=true,
+
+			TimingWindowSecondsW1=0.021500,
+			TimingWindowSecondsW2=0.043000,
+			TimingWindowSecondsW3=0.102000,
+			TimingWindowSecondsW4=0.135000,
+			TimingWindowSecondsW5=0.180000,
+			TimingWindowSecondsHold=0.320000,
+			TimingWindowSecondsMine=0.070000,
 			TimingWindowSecondsRoll=0.350000,
 		},
 	},
@@ -321,6 +349,37 @@ SL = {
 			LifePercentChangeLetGo=-0.08,
 			LifePercentChangeHeld=0.008,
 			LifePercentChangeHitMine=-0.05,
+		},
+		PIU = {
+			PercentScoreWeightW1=5,
+			PercentScoreWeightW2=5,
+			PercentScoreWeightW3=2.5,
+			PercentScoreWeightW4=0.5,
+			PercentScoreWeightW5=-1,
+			PercentScoreWeightMiss=-2.5,
+			PercentScoreWeightLetGo=0,
+			PercentScoreWeightHeld=5,
+			PercentScoreWeightHitMine=-2.5,
+
+			GradeWeightW1=5,
+			GradeWeightW2=5,
+			GradeWeightW3=2.5,
+			GradeWeightW4=0.5,
+			GradeWeightW5=-1,
+			GradeWeightMiss=-2.5,
+			GradeWeightLetGo=0,
+			GradeWeightHeld=5,
+			GradeWeightHitMine=-2.5,
+
+			LifePercentChangeW1=0.008,
+			LifePercentChangeW2=0.008,
+			LifePercentChangeW3=0.004,
+			LifePercentChangeW4=0.000,
+			LifePercentChangeW5=-0.050,
+			LifePercentChangeMiss=-0.100,
+			LifePercentChangeLetGo=IsGame("pump") and 0.000 or -0.080,
+			LifePercentChangeHeld=IsGame("pump") and 0.000 or 0.008,
+			LifePercentChangeHitMine=-0.050,
 		},
 	}
 }
