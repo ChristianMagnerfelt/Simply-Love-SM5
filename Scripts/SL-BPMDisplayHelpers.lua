@@ -116,6 +116,9 @@ StringifyDisplayBPMs = function(player, StepsOrTrail, MusicRate)
 	-- modifier is in effect, in which case show 1 decimal of precision
 	local fmt = MusicRate==1 and "%.0f" or "%.1f"
 
+	if bpms[2] > 1000 then
+		bpms[2] = bpms[1]
+	end
 	if bpms[1] == bpms[2] then
 		return ("%g"):format( fmt:format(bpms[1]) )
 	end

@@ -201,9 +201,9 @@ end
 
 DetermineTimingWindow = function(offset)
 	for i=1,5 do
-		if math.abs(offset) < SL.Preferences[SL.Global.GameMode]["TimingWindowSecondsW"..i] * PREFSMAN:GetPreference("TimingWindowScale") + SL.Preferences[SL.Global.GameMode]["TimingWindowAdd"] then
-			return i
-		end
+	 if math.abs(offset) <= SL.Preferences[SL.Global.GameMode]["TimingWindowSecondsW"..i] * PREFSMAN:GetPreference("TimingWindowScale") + SL.Preferences[SL.Global.GameMode]["TimingWindowAdd"] then
+	  return i
+	 end
 	end
 	return 5
 end
@@ -492,7 +492,7 @@ SetGameModePreferences = function()
 		ITG = "",
 		["FA+"] = "ECFA-",
 		Casual = "Casual-",
-		PIU = "PIU-"
+		PIU = ""
 	}
 
 	if PROFILEMAN:GetStatsPrefix() ~= prefix[SL.Global.GameMode] then
