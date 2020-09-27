@@ -287,6 +287,8 @@ SL = {
 			LifePercentChangeLetGo=0,
 			LifePercentChangeHeld=0,
 			LifePercentChangeHitMine=0,
+
+			CheckpointsTapsSeparateJudgment=false,
 		},
 		ITG = {
 			PercentScoreWeightW1=5,
@@ -318,6 +320,8 @@ SL = {
 			LifePercentChangeLetGo=IsGame("pump") and 0.000 or -0.080,
 			LifePercentChangeHeld=IsGame("pump") and 0.000 or 0.008,
 			LifePercentChangeHitMine=-0.050,
+
+			CheckpointsTapsSeparateJudgment=false,
 		},
 		["FA+"] = {
 			PercentScoreWeightW1=5,
@@ -349,6 +353,8 @@ SL = {
 			LifePercentChangeLetGo=-0.08,
 			LifePercentChangeHeld=0.008,
 			LifePercentChangeHitMine=-0.05,
+
+			CheckpointsTapsSeparateJudgment=false,
 		},
 		PIU = {
 			PercentScoreWeightW1=5,
@@ -380,6 +386,8 @@ SL = {
 			LifePercentChangeLetGo=IsGame("pump") and 0.000 or -0.080,
 			LifePercentChangeHeld=IsGame("pump") and 0.000 or 0.008,
 			LifePercentChangeHitMine=-0.050,
+
+			CheckpointsTapsSeparateJudgment=true,
 		},
 	}
 }
