@@ -49,8 +49,15 @@ local t = Def.ActorFrame{
 
 local windows = SL.Global.ActiveModifiers.TimingWindows
 
+local idx = 1
+local yOffset = -16
+if SL.Global.GameMode=="PIU" then
+  idx = 2
+	yOffset = -44
+end
+
 --  labels: W1 ---> Miss
-for i=1, #TapNoteScores.Types do
+for i=idx, #TapNoteScores.Types do
 	-- no need to add BitmapText actors for TimingWindows that were turned off
 	if windows[i] or i==#TapNoteScores.Types then
 
@@ -62,7 +69,7 @@ for i=1, #TapNoteScores.Types do
 			InitCommand=function(self) self:zoom(0.833):horizalign(right):maxwidth(76) end,
 			BeginCommand=function(self)
 				self:x( (side == PLAYER_1 and 28) or -28 )
-				self:y((i-1)*28 -16)
+				self:y((i-1)*28 + yOffset)
 				-- diffuse the JudgmentLabels the appropriate colors for the current GameMode
 				self:diffuse( SL.JudgmentColors[SL.Global.GameMode][i] )
 			end
@@ -71,7 +78,8 @@ for i=1, #TapNoteScores.Types do
 end
 
 -- labels: holds, mines, hands, rolls
-for index, label in ipairs(RadarCategories) do
+if SL.Global.GameMode~="PIU" then
+  for index, label in ipairs(RadarCategories) do
 
 	local performance = stats:GetRadarActual():GetValue( "RadarCategory_"..firstToUpper(EnglishRadarCategories[label]) )
 	local possible = stats:GetRadarPossible():GetValue( "RadarCategory_"..firstToUpper(EnglishRadarCategories[label]) )
@@ -85,6 +93,7 @@ for index, label in ipairs(RadarCategories) do
 			self:y((index-1)*28 + 41)
 		end
 	}
+  end
 end
 
 return t

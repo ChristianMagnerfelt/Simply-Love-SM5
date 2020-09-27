@@ -166,12 +166,12 @@ SL = {
 			color("#ff3030")	-- red (slightly lightened)
 		},
 		PIU = {
-			color("#21CCE8"),	-- blue
-			color("#e29c18"),	-- gold
-			color("#66c955"),	-- green
-			color("#b45cff"),	-- purple (greatly lightened)
-			color("#c9855e"),	-- peach?
-			color("#ff3030")	-- red (slightly lightened)
+			color("#4bceec"),	-- blue
+			color("#4bceec"),	-- blue
+			color("#29bc30"),	-- green
+			color("#e0d344"),	-- gold
+			color("#cb73d0"),	-- purple
+			color("#ff3030")	-- red
 		},
 	},
 	Preferences = {
@@ -267,6 +267,8 @@ SL = {
 			PercentScoreWeightLetGo=0,
 			PercentScoreWeightHeld=3,
 			PercentScoreWeightHitMine=-1,
+			PercentScoreWeightCheckpointHit=0,
+			PercentScoreWeightCheckpointMiss=0,
 
 			GradeWeightW1=3,
 			GradeWeightW2=2,
@@ -277,6 +279,8 @@ SL = {
 			GradeWeightLetGo=0,
 			GradeWeightHeld=3,
 			GradeWeightHitMine=-1,
+			GradeWeightCheckpointHit=0,
+			GradeWeightCheckpointMiss=0,
 
 			LifePercentChangeW1=0,
 			LifePercentChangeW2=0,
@@ -289,6 +293,7 @@ SL = {
 			LifePercentChangeHitMine=0,
 
 			CheckpointsTapsSeparateJudgment=false,
+			RequireStepOnHoldHeads=true,
 		},
 		ITG = {
 			PercentScoreWeightW1=5,
@@ -300,6 +305,8 @@ SL = {
 			PercentScoreWeightLetGo=0,
 			PercentScoreWeightHeld=5,
 			PercentScoreWeightHitMine=-6,
+			PercentScoreWeightCheckpointHit=0,
+			PercentScoreWeightCheckpointMiss=0,
 
 			GradeWeightW1=5,
 			GradeWeightW2=4,
@@ -310,6 +317,8 @@ SL = {
 			GradeWeightLetGo=0,
 			GradeWeightHeld=5,
 			GradeWeightHitMine=-6,
+			GradeWeightCheckpointHit=0,
+			GradeWeightCheckpointMiss=0,
 
 			LifePercentChangeW1=0.008,
 			LifePercentChangeW2=0.008,
@@ -317,11 +326,12 @@ SL = {
 			LifePercentChangeW4=0.000,
 			LifePercentChangeW5=-0.050,
 			LifePercentChangeMiss=-0.100,
-			LifePercentChangeLetGo=IsGame("pump") and 0.000 or -0.080,
-			LifePercentChangeHeld=IsGame("pump") and 0.000 or 0.008,
+			LifePercentChangeLetGo=-0.080,
+			LifePercentChangeHeld=0.008,
 			LifePercentChangeHitMine=-0.050,
 
 			CheckpointsTapsSeparateJudgment=false,
+			RequireStepOnHoldHeads=true,
 		},
 		["FA+"] = {
 			PercentScoreWeightW1=5,
@@ -333,6 +343,8 @@ SL = {
 			PercentScoreWeightLetGo=0,
 			PercentScoreWeightHeld=5,
 			PercentScoreWeightHitMine=-6,
+			PercentScoreWeightCheckpointHit=0,
+			PercentScoreWeightCheckpointMiss=0,
 
 			GradeWeightW1=5,
 			GradeWeightW2=5,
@@ -343,6 +355,8 @@ SL = {
 			GradeWeightLetGo=0,
 			GradeWeightHeld=5,
 			GradeWeightHitMine=-6,
+			GradeWeightCheckpointHit=0,
+			GradeWeightCheckpointMiss=0,
 
 			LifePercentChangeW1=0.008,
 			LifePercentChangeW2=0.008,
@@ -355,6 +369,7 @@ SL = {
 			LifePercentChangeHitMine=-0.05,
 
 			CheckpointsTapsSeparateJudgment=false,
+			RequireStepOnHoldHeads=true,
 		},
 		PIU = {
 			PercentScoreWeightW1=5,
@@ -362,10 +377,12 @@ SL = {
 			PercentScoreWeightW3=2.5,
 			PercentScoreWeightW4=0.5,
 			PercentScoreWeightW5=-1,
-			PercentScoreWeightMiss=-2.5,
+			PercentScoreWeightMiss=-5,
 			PercentScoreWeightLetGo=0,
 			PercentScoreWeightHeld=5,
 			PercentScoreWeightHitMine=-2.5,
+			PercentScoreWeightCheckpointHit=5,
+			PercentScoreWeightCheckpointMiss=-5,
 
 			GradeWeightW1=5,
 			GradeWeightW2=5,
@@ -376,6 +393,8 @@ SL = {
 			GradeWeightLetGo=0,
 			GradeWeightHeld=5,
 			GradeWeightHitMine=-2.5,
+			GradeWeightCheckpointHit=5,
+			GradeWeightCheckpointMiss=-5,
 
 			LifePercentChangeW1=0.0071,
 			LifePercentChangeW2=0.0071,
@@ -383,11 +402,12 @@ SL = {
 			LifePercentChangeW4=0.004,
 			LifePercentChangeW5=-0.025,
 			LifePercentChangeMiss=-0.050,
-			LifePercentChangeLetGo=IsGame("pump") and 0.000 or -0.080,
-			LifePercentChangeHeld=IsGame("pump") and 0.000 or 0.008,
+			LifePercentChangeLetGo=0,
+			LifePercentChangeHeld=0,
 			LifePercentChangeHitMine=-0.050,
 
 			CheckpointsTapsSeparateJudgment=true,
+			RequireStepOnHoldHeads=false,
 		},
 	}
 }

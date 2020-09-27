@@ -68,20 +68,30 @@ for i, column in ipairs( cols ) do
 
 	local miss_bmt = nil
 
+	local idx = 1
+	local yOffset = 4
+	if SL.Global.GameMode=="PIU" then
+	  idx = 2
+		yOffset = 4 - row_height
+	end
+
 	-- for each possible judgment
 	for j, judgment in ipairs(rows) do
-		-- don't add rows for TimingWindows that were turned off, but always add Miss
-		if gmods.TimingWindows[j] or j==#rows then
-			-- add a BitmapText actor to be the number for this column
-			af[#af+1] = LoadFont("Common Normal")..{
-				Text=SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i][judgment],
-				InitCommand=function(self)
-					self:xy(_x, j*row_height + 4)
-						:zoom(0.9)
-					if j == #rows then miss_bmt = self end
-				end
-			}
-		end
+
+		if j >= idx then
+			-- don't add rows for TimingWindows that were turned off, but always add Miss
+			if gmods.TimingWindows[j] or j==#rows then
+				-- add a BitmapText actor to be the number for this column
+				af[#af+1] = LoadFont("Common Normal")..{
+					Text=SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i][judgment],
+					InitCommand=function(self)
+						self:xy(_x, j*row_height + yOffset)
+							:zoom(0.9)
+						if j == #rows then miss_bmt = self end
+					end
+				}
+			end
+	  end
 	end
 
 	if track_missbcheld then

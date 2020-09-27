@@ -27,7 +27,14 @@ local t = Def.ActorFrame{
 }
 
 -- do "regular" TapNotes first
-for i=1,#TapNoteScores.Types do
+local idx = 1
+local yOffset = -20
+if SL.Global.GameMode=="PIU" then
+  idx = 2
+	yOffset = -55
+end
+
+for i=idx,#TapNoteScores.Types do
 	local window = TapNoteScores.Types[i]
 	local number = pss:GetTapNoteScores( "TapNoteScore_"..window )
 
@@ -57,7 +64,7 @@ for i=1,#TapNoteScores.Types do
 		end,
 		BeginCommand=function(self)
 			self:x( TapNoteScores.x[ToEnumShortString(side)] )
-			self:y((i-1)*35 -20)
+			self:y((i-1)*35 + yOffset)
 			self:targetnumber(number)
 		end
 	}
@@ -66,6 +73,7 @@ end
 
 
 -- then handle holds, mines, hands, rolls
+if SL.Global.GameMode~="PIU" then
 for index, RCType in ipairs(RadarCategories.Types) do
 
 	local performance = pss:GetRadarActual():GetValue( "RadarCategory_"..RCType )
@@ -103,6 +111,7 @@ for index, RCType in ipairs(RadarCategories.Types) do
 			self:AddAttribute(0, leadingZeroAttr )
 		end
 	}
+end
 end
 
 return t

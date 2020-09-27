@@ -20,8 +20,15 @@ local miss_bmt
 
 local windows = SL.Global.ActiveModifiers.TimingWindows
 
+local idx = 1
+local yOffset = 0
+if SL.Global.GameMode=="PIU" then
+  idx = 2
+	yOffset = -row_height
+end
+
 --  labels: W1 ---> Miss
-for i=1, #TapNoteScores.Types do
+for i=idx, #TapNoteScores.Types do
 	-- no need to add BitmapText actors for TimingWindows that were turned off
 	if windows[i] or i==#TapNoteScores.Types then
 
@@ -33,7 +40,7 @@ for i=1, #TapNoteScores.Types do
 			InitCommand=function(self)
 				self:zoom(0.8):horizalign(right):maxwidth(65/self:GetZoom())
 					:x( (player == PLAYER_1 and -130) or -28 )
-					:y( i * row_height )
+					:y( i * row_height + yOffset)
 					:diffuse( SL.JudgmentColors[SL.Global.GameMode][i] )
 
 				if i == #TapNoteScores.Types then miss_bmt = self end
