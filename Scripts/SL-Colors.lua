@@ -32,6 +32,14 @@ function PlayerColor( pn, decorative )
 end
 
 function DifficultyColor( difficulty, decorative )
+	local style = GAMESTATE:GetCurrentStyle():GetName():gsub("8", "")
+
+	if style == 'double' then
+    return color("#29bc30")
+	else
+    return color("#FFA500")
+	end
+
 	if (difficulty == nil or difficulty == "Difficulty_Edit") then return color("#B4B7BA") end
 
 	-- use the reverse lookup functionality available to all SM enums

@@ -123,7 +123,8 @@ for RowNumber=1,num_rows do
 		end,
 		SetCommand=function(self, params)
 			-- diffuse and set each chart's difficulty meter
-			self:diffuse( DifficultyColor(params.Difficulty) )
+			-- self:diffuse( DifficultyColor(params.Difficulty) )
+			self:diffuse( color("#FFFFFF") )
 			self:settext(params.Meter)
 		end,
 		UnsetCommand=function(self) self:settext(""):diffuse(color("#182025")) end,

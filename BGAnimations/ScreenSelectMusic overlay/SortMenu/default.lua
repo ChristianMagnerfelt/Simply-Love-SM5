@@ -117,21 +117,29 @@ local t = Def.ActorFrame {
 
 		-- the engine's MusicWheel has distinct items in the SortOrder enum for double
 		if style == "double" then
-			table.insert(wheel_options, {"SortBy", "DoubleChallengeMeter"})
-			table.insert(wheel_options, {"SortBy", "DoubleHardMeter"})
-			table.insert(wheel_options, {"SortBy", "DoubleMediumMeter"})
-			table.insert(wheel_options, {"SortBy", "DoubleEasyMeter"})
-			table.insert(wheel_options, {"SortBy", "DoubleBeginnerMeter"})
-
+			if SL.Global.GameMode == "PIU" then
+				table.insert(wheel_options, {"SortBy", "DoubleDifficultyMeter"})
+			else
+				table.insert(wheel_options, {"SortBy", "DoubleChallengeMeter"})
+				table.insert(wheel_options, {"SortBy", "DoubleHardMeter"})
+				table.insert(wheel_options, {"SortBy", "DoubleMediumMeter"})
+				table.insert(wheel_options, {"SortBy", "DoubleEasyMeter"})
+				table.insert(wheel_options, {"SortBy", "DoubleBeginnerMeter"})
+			end
 		-- Otherwise... use the SortOrders that don't specify double.
 		-- Does this imply that difficulty sorting in more uncommon styles
 		-- (solo, routine, etc.) probably doesn't work?
 		else
-			table.insert(wheel_options, {"SortBy", "ChallengeMeter"})
-			table.insert(wheel_options, {"SortBy", "HardMeter"})
-			table.insert(wheel_options, {"SortBy", "MediumMeter"})
-			table.insert(wheel_options, {"SortBy", "EasyMeter"})
-			table.insert(wheel_options, {"SortBy", "BeginnerMeter"})
+
+			if SL.Global.GameMode == "PIU" then
+				table.insert(wheel_options, {"SortBy", "SingleDifficultyMeter"})
+			else
+				table.insert(wheel_options, {"SortBy", "ChallengeMeter"})
+				table.insert(wheel_options, {"SortBy", "HardMeter"})
+				table.insert(wheel_options, {"SortBy", "MediumMeter"})
+				table.insert(wheel_options, {"SortBy", "EasyMeter"})
+				table.insert(wheel_options, {"SortBy", "BeginnerMeter"})
+			end
 		end
 
 		table.insert(wheel_options, {"SortBy", "Popularity"})
