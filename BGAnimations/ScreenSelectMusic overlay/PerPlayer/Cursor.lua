@@ -80,9 +80,6 @@ return Def.Sprite{
 			end
 		end
 
-		-- keep within reasonable limits because Edit charts are a thing
-		RowIndex = clamp(RowIndex, 1, 5)
-
 		-- update cursor y position
 		local sdl = self:GetParent():GetParent():GetChild("StepsDisplayList")
 		if sdl then

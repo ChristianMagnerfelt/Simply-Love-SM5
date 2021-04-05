@@ -17,7 +17,7 @@ local style = GAMESTATE:GetCurrentStyle()
 local style_name = style:GetName()
 local num_columns = style:ColumnsPerPlayer()
 
-local rows = { "W1", "W2", "W3", "W4", "W5", "Miss" }
+local rows = { "W1", "W2", "W3", "W4", "W5", "Miss"}
 local cols = {}
 
 -- loop num_columns number of time to fill the cols table with
@@ -82,8 +82,20 @@ for i, column in ipairs( cols ) do
 			-- don't add rows for TimingWindows that were turned off, but always add Miss
 			if gmods.TimingWindows[j] or j==#rows then
 				-- add a BitmapText actor to be the number for this column
+				local number = SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i][judgment]
+
+				if SL.Global.GameMode=="PIU" then
+					if judgment == "Miss" then
+						number = number + SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i]["CheckpointMiss"]
+					end
+
+					if judgment == "W2" then
+						number = number + SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i]["CheckpointHit"]
+					end
+				end
+
 				af[#af+1] = LoadFont("Common Normal")..{
-					Text=SL[pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].column_judgments[i][judgment],
+					Text=number,
 					InitCommand=function(self)
 						self:xy(_x, j*row_height + yOffset)
 							:zoom(0.9)

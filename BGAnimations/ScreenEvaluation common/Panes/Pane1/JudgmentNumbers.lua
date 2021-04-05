@@ -36,7 +36,20 @@ end
 
 for i=idx,#TapNoteScores.Types do
 	local window = TapNoteScores.Types[i]
-	local number = pss:GetTapNoteScores( "TapNoteScore_"..window )
+	local tns = "TapNoteScore_"..window
+	local number = pss:GetTapNoteScores(tns)
+
+  if SL.Global.GameMode == "PIU" then
+
+  	if tns == "TapNoteScore_W2" then
+			number = number + pss:GetTapNoteScores("TapNoteScore_CheckpointHit")
+		end
+
+		if tns == "TapNoteScore_Miss" then
+			number = number + pss:GetTapNoteScores("TapNoteScore_CheckpointMiss")
+		end
+
+	end
 
 	-- actual numbers
 	t[#t+1] = Def.RollingNumbers{

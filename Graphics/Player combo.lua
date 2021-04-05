@@ -24,6 +24,14 @@ if SL.Global.GameMode == "FA+" then
 	colors.FullComboW4 = {color("#C9FFC9"), color("#94FEC1")} -- green combo
 end
 
+-- combo colors used in FA+
+if SL.Global.GameMode == "PIU" then
+	colors.FullComboW1 = {color("#4bceec"), color("#4bceec")} -- blue combo
+	colors.FullComboW2 = {color("#4bceec"), color("#4bceec")} -- blue combo
+	colors.FullComboW3 = {color("#29bc30"), color("#29bc30")} -- green combo
+	colors.FullComboW4 = {color("#FFFFFF"), color("#FFFFFF")} -- white combo
+end
+
 
 local ShowComboAt = THEME:GetMetric("Combo", "ShowComboAt")
 

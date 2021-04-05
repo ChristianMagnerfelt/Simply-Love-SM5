@@ -25,7 +25,7 @@ local track_missbcheld = SL[ToEnumShortString(player)].ActiveModifiers.MissBecau
 
 local judgments = {}
 for i=1,GAMESTATE:GetCurrentStyle():ColumnsPerPlayer() do
-	judgments[#judgments+1] = { W1=0, W2=0, W3=0, W4=0, W5=0, Miss=0 }
+	judgments[#judgments+1] = { W1=0, W2=0, W3=0, W4=0, W5=0, Miss=0, CheckpointHit=0, CheckpointMiss=0 }
 end
 
 local actor = Def.Actor{
@@ -48,7 +48,7 @@ if not track_missbcheld then
 				-- we do want to consider normal tapnotes, hold heads, and lifts
 				-- see: https://quietly-turning.github.io/Lua-For-SM5/LuaAPI#Enums-TapNoteType
 				if tnt == "TapNoteType_Tap" or tnt == "TapNoteType_HoldHead" or tnt == "TapNoteType_Lift" then
-					local tns = ToEnumShortString(params.TapNoteScore)
+          local tns = ToEnumShortString(params.TapNoteScore)
 					judgments[col][tns] = judgments[col][tns] + 1
 				end
 			end
@@ -100,23 +100,43 @@ else
 	actor.OnCommand=function(self) SCREENMAN:GetTopScreen():AddInputCallback( InputHandler ) end
 	actor.JudgmentMessageCommand=function(self, params)
 		local health_state = GAMESTATE:GetPlayerState(params.Player):GetHealthState()
-		if params.Player == player and params.Notes and health_state ~= 'HealthState_Dead' then
-			for col,tapnote in pairs(params.Notes) do
+		if params.Player == player and health_state ~= 'HealthState_Dead' then
 
-				local tnt = tapnote:GetTapNoteType()
 
-				-- we don't want to consider TapNoteTypes like Mine, HoldTail, Attack, etc. when counting judgments
-				-- we do want to consider normal tapnotes, hold heads, and lifts
-				-- see: https://quietly-turning.github.io/Lua-For-SM5/LuaAPI#Enums-TapNoteType
-				if tnt == "TapNoteType_Tap" or tnt == "TapNoteType_HoldHead" or tnt == "TapNoteType_Lift" then
+
+
+
+			if params.Notes then
+				for col,tapnote in pairs(params.Notes) do
+
+					local tnt = tapnote:GetTapNoteType()
 					local tns = ToEnumShortString(params.TapNoteScore)
-					judgments[col][tns] = judgments[col][tns] + 1
 
-					if tns == "Miss" and held[params.Player][ buttons[col] ] then
-						judgments[col].MissBecauseHeld = judgments[col].MissBecauseHeld + 1
+					if tnt == "TapNoteType_Empty" then
+						if tns == "CheckpointHit" then
+		      		judgments[col][tns] = judgments[col][tns] + 1
+						end
+
+						if tns == "CheckpointMiss" then
+		      		judgments[col][tns] = judgments[col][tns] + 1
+						end
+					end
+
+					-- we don't want to consider TapNoteTypes like Mine, HoldTail, Attack, etc. when counting judgments
+					-- we do want to consider normal tapnotes, hold heads, and lifts
+					-- see: https://quietly-turning.github.io/Lua-For-SM5/LuaAPI#Enums-TapNoteType
+					if tnt == "TapNoteType_Tap" or tnt == "TapNoteType_HoldHead" or tnt == "TapNoteType_Lift" then
+
+						judgments[col][tns] = judgments[col][tns] + 1
+
+						if tns == "Miss" and held[params.Player][ buttons[col] ] then
+							judgments[col].MissBecauseHeld = judgments[col].MissBecauseHeld + 1
+						end
 					end
 				end
 			end
+
+
 		end
 	end
 end
